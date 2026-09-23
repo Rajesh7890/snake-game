@@ -1,23 +1,73 @@
+<!-- index.html - Snake Game HTML -->
+
+<!-- Copyright (c) 2026 - present Rajesh Sahoo's personal project -->
+
+<!--
+modification history
+--------------------
+01f,24sep26,rks  created.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Snake Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="game-container">
-        <div class="game-header">
-            <h1>Snake Game</h1>
-            <div class="score-container">
-                Score: <span id="score">0</span>
+    <div class="main-wrapper">
+        <div class="game-container">
+            <div class="game-header">
+                <h1>Snake Game</h1>
+                <div class="stats-container">
+                    <div class="stat-box">Score: <span id="score">0</span></div>
+                    <div class="stat-box">Time: <span id="timer">0s</span></div>
+                </div>
+            </div>
+            <div class="canvas-container">
+                <canvas id="gameCanvas" width="400" height="400"></canvas>
+                <div id="overlay" class="overlay">
+                    <h2 id="overlayTitle">Snake Game</h2>
+                    <p id="overlayText">Ready to play?</p>
+                    
+                    <div class="name-input-group">
+                        <label for="playerNameInput">Player Name:</label>
+                        <input type="text" id="playerNameInput" placeholder="Enter your name" value="Player 1" maxlength="15">
+                    </div>
+
+                    <button id="overlayButton">Start Game</button>
+
+                    <div class="legend-container">
+                        <h3>How to Play</h3>
+                        <ul>
+                            <li><span class="legend-icon red-food"></span> <strong>Food:</strong> +10 Pts, speed up</li>
+                            <li><span class="legend-icon gold-coin"></span> <strong>Bonus:</strong> +50 Pts, speed up++</li>
+                            <li><span class="legend-icon black-bomb"></span> <strong>Bomb:</strong> Halves score & size, slows</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mobile-controls">
+                <div class="control-row">
+                    <button class="d-pad" id="btnUp">▲</button>
+                </div>
+                <div class="control-row">
+                    <button class="d-pad" id="btnLeft">◀</button>
+                    <button class="d-pad" id="btnDown">▼</button>
+                    <button class="d-pad" id="btnRight">▶</button>
+                </div>
             </div>
         </div>
-        <canvas id="gameCanvas" width="400" height="400"></canvas>
-        <div class="game-controls">
-            <button id="startButton">Start Game</button>
-            <button id="restartButton" style="display: none;">Restart</button>
+
+        <div class="leaderboard-container">
+            <h2>Leaderboard</h2>
+            <ul id="leaderboardList">
+                <li class="empty-msg">No scores yet!</li>
+            </ul>
         </div>
     </div>
     <script src="game.js"></script>

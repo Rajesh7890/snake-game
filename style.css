@@ -1,3 +1,13 @@
+/* style.css - Snake Game CSS */
+
+/* Copyright (c) 2026 - present Rajesh Sahoo's personal project */
+
+/*
+modification history
+--------------------
+01f,24sep26,rks  created.
+*/
+
 * {
     margin: 0;
     padding: 0;
@@ -9,65 +19,294 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f2f5;
-    font-family: Arial, sans-serif;
+    background-color: #1a1a2e;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    padding: 0.5rem;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1000px;
+    width: 100%;
 }
 
 .game-container {
-    background-color: white;
-    padding: 2rem;
+    background-color: #16213e;
+    padding: 1rem;
     border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    flex: 1 1 100%;
+    max-width: 500px;
 }
 
 .game-header {
-    text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 h1 {
-    color: #333;
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    color: #4ade80;
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.score-container {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 1rem;
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    color: #a0aec0;
+    font-weight: 600;
+}
+.stat-box span {
+    color: #4ade80;
+}
+
+.canvas-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
 }
 
 #gameCanvas {
-    border: 2px solid #333;
-    border-radius: 4px;
-    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    border: 4px solid #0f3460;
+    border-radius: 8px;
+    background-color: #1a1a2e;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+    display: block;
 }
 
-.game-controls {
-    margin-top: 1.5rem;
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(22, 33, 62, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    z-index: 10;
+    padding: 1rem;
+}
+
+.overlay h2 {
+    color: #f87171;
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    margin-bottom: 0.25rem;
+}
+
+.overlay p {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    margin-bottom: 0.5rem;
+    color: #e2e8f0;
+}
+
+.name-input-group {
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    width: 100%;
+}
+
+.name-input-group label {
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    color: #94a3b8;
+}
+
+.name-input-group input {
+    padding: 0.4rem 0.8rem;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    border-radius: 8px;
+    border: 2px solid #0f3460;
+    background-color: #1a1a2e;
+    color: #fff;
     text-align: center;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s;
+    width: 80%;
+    max-width: 200px;
+}
+
+.name-input-group input:focus {
+    border-color: #4ade80;
 }
 
 button {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    font-weight: 600;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    transition: background-color 0.3s;
-    margin: 0 0.5rem;
+    background-color: #4ade80;
+    color: #1a1a2e;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #22c55e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 222, 128, 0.3);
 }
 
-#restartButton {
-    background-color: #f44336;
+/* Legend */
+.legend-container {
+    margin-top: 1rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-align: left;
+    width: 90%;
+    max-width: 300px;
+}
+.legend-container h3 {
+    color: #38bdf8;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    margin-bottom: 0.3rem;
+    text-align: center;
+}
+.legend-container ul {
+    list-style: none;
+    font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+    color: #e2e8f0;
+}
+.legend-container li {
+    margin-bottom: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.legend-icon {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.red-food { background-color: #f87171; box-shadow: 0 0 5px #f87171; }
+.gold-coin { background-color: #fbbf24; border: 2px solid #fff; box-shadow: 0 0 5px #fbbf24; }
+.black-bomb { background-color: #222; border: 2px solid #ef4444; }
+
+
+/* Mobile Controls */
+.mobile-controls {
+    margin-top: 1rem;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
 }
 
-#restartButton:hover {
-    background-color: #da190b;
+.control-row {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.d-pad {
+    padding: 0.8rem 1.2rem;
+    font-size: 1.2rem;
+    background-color: #0f3460;
+    color: white;
+    border-radius: 12px;
+}
+
+.d-pad:active {
+    background-color: #4ade80;
+    color: #1a1a2e;
+}
+
+@media (max-width: 768px) {
+    .mobile-controls {
+        display: flex;
+    }
+}
+
+/* Leaderboard */
+.leaderboard-container {
+    background-color: #16213e;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    flex: 1 1 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.leaderboard-container h2 {
+    color: #38bdf8;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    text-transform: uppercase;
+}
+
+#leaderboardList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+#leaderboardList li {
+    background-color: #1a1a2e;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
+    flex-wrap: wrap;
+}
+
+#leaderboardList li .rank {
+    color: #94a3b8;
+    margin-right: 0.5rem;
+    width: 20px;
+    display: inline-block;
+}
+
+#leaderboardList li .name-val {
+    flex: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+}
+
+#leaderboardList li .score-val {
+    color: #4ade80;
+}
+
+#leaderboardList li .time-val {
+    color: #38bdf8;
+    font-size: 0.85em;
+    margin-left: 0.5rem;
+}
+
+.empty-msg {
+    text-align: center;
+    color: #94a3b8;
+    font-weight: 400 !important;
+    justify-content: center !important;
 }
